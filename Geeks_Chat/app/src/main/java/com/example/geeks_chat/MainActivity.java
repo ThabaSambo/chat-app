@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     UserAdpter adpter;
     FirebaseDatabase database;
     ArrayList<Users>usersArrayList;
-    String nnnn;
+    
 
 
     @Override
