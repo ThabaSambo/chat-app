@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backg"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_63sdp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@color/black"
+        android:gravity="right"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Geeks_Chat"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_30sdp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <ImageView
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_280sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:src="@drawable/logout"
+        android:transitionName="logout_img" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainUserRecyclerView"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomImageView"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="-15dp"
+        android:layout_marginEnd="-8dp"
+        android:layout_marginBottom="14dp" />
+
+    <ImageView
+        android:id="@+id/bottomImageView"
+        android:layout_width="@dimen/_71sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_1sdp"
+        android:src="@drawable/photocamera" />
+
+    <ImageView
+        android:id="@+id/yourImageViewId"
+    android:layout_width="@dimen/_71sdp"
+    android:layout_height="@dimen/_50sdp"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentBottom="true"
+    android:src="@drawable/chat"
+        tools:ignore="DuplicateIds" />
+    <ImageView
+        android:id="@+id/yourImageViewId"
+        android:layout_width="@dimen/_71sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/_20sdp"
+    android:src="@drawable/settone"
+        tools:ignore="DuplicateIds" />
+
+
+
+</RelativeLayout>
