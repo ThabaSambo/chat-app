@@ -3,12 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="13.00dp"
-    android:backgraund="@drawable/bordermain">
+    android:background="@drawable/bordermain">
+    >
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"></androidx.appcompat.widget.LinearLayoutCompat>
+        android:orientation="horizontal"
+        android:background="@color/black">
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <de.hdodenhof.circleimageview.CircleImageView
 
@@ -33,6 +37,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeMinTextSize="10.40sp"
@@ -41,6 +46,7 @@
                 android:textSize="23.40sp" />
 
             <TextView
+                android:id="@+id/userstatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeMinTextSize="10.40sp"

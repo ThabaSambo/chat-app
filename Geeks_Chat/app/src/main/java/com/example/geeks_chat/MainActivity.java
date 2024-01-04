@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.animation.IntArrayEvaluator;
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,50 +23,54 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     RecyclerView mainUserRecyclerView;
-    UserAdpter adpter;
+    UserAdpter adapter; // Changed variable name to follow naming conventions
     FirebaseDatabase database;
-    ArrayList<Users>usersArrayList;
-    
+    ArrayList<Users> usersArrayList;
 
+    Users users;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        database=FirebaseDatabase.getInstance();
-        auth=FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        auth = FirebaseAuth.getInstance();
+        mainUserRecyclerView = findViewById(R.id.mainUserRecyclerView);
+        mainUserRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        DatabaseReference reference=database.getReference().child("user");
-        usersArrayList=new ArrayList<>();
+        usersArrayList = new ArrayList<>();
+        adapter = new UserAdpter(usersArrayList);
+        mainUserRecyclerView.setAdapter(adapter);
+
+        DatabaseReference reference = database.getReference().child("user");
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                usersArrayList.clear(); // Clear the list before adding new data
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Users users = dataSnapshot.getValue(Users.class);
+                    users = dataSnapshot.getValue(Users.class);
                     usersArrayList.add(users);
                 }
-                adpter.notifyDataSetChanged();
+
+                if (usersArrayList.size() > 0) {
+                    // Data is available, notify the adapter about the data change
+                    adapter.notifyDataSetChanged();
+                    mainUserRecyclerView.setVisibility(View.VISIBLE);
+                    Toast.makeText(MainActivity.this, "users found", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Handle the case when no data is available
+                    Toast.makeText(MainActivity.this, "No users found", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle database error
+                Toast.makeText(MainActivity.this, "Database error", Toast.LENGTH_SHORT).show();
             }
         });
-        mainUserRecyclerView=findViewById(R.id.mainUserRecyclerView);
-        mainUserRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //adpter
-                mainUserRecyclerView.setAdapter(adpter);
-
-        //if(auth.getCurrentUser()=null){
-            Intent intent=new Intent(MainActivity.this,login.class);
-            startActivity(intent);
-        }
-
-
-
     }
-
-
+}
